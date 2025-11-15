@@ -1,6 +1,8 @@
 ## PRISM — The Open Intent Signal
 v0.1 • Public Protocol • The Trust Signal, Not the Trust Engine
 
+> ⭐ **Star this repo if you want AI systems to make their intent readable by default.**
+
 Prism is a lightweight, neutral protocol for generating standardized intent metadata across apps, agents, and AI systems.
 
 It provides a universal pre-execution intent signal — a tiny metadata envelope that documents what an agent is about to do, without enforcing, verifying, judging, or governing the action.
