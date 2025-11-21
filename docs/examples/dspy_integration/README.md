@@ -105,5 +105,37 @@ This violates:
 
 - Protocol architecture
 
+---
 
+## Prism Protocol Boundary Diagram (v0.1)
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    INTERNAL REASONING LAYER                 │
+├─────────────────────────────────────────────────────────────┤
+│  ┌─────────────────┐          ┌─────────────────┐           │
+│  │   LLM / Model   │          │   DSPy Module   │           │
+│  │   (reasoning)   │  ────▶   │ (optimization) │           │
+│  └─────────────────┘          └─────────────────┘           │
+│                                    │                        │
+│                            ┌───────┘                        │
+│                            ▼                                │
+│        ┌───────────────────────────────────┐                │  
+│        │        Agent Decision Logic       │                │
+│        │  (interprets reasoning output and │                │
+│        │       decides to take action)     │                │
+│        └─────────────────┬─────────────────┘                │
+└──────────────────────────│───────────────────────────────── ┘
+                           │
+                           │ generates Prism envelope
+                           ▼
 
+                         PRISM ENVELOPE
+      ┌─────────────────────────────────────────────────────┐
+      │ prism_id: "uuid-1234"                               │
+      │ timestamp: "2025-11-10T20:30:00Z"                   │
+      │ agent: "agent_7b3a"                                 │
+      │ intent_summary: "update_application_config"         │
+      │ prism_version: "prism_v0.1"                         │
+      └─────────────────────────────────────────────────────┘
+
+```
