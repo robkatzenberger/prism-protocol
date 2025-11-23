@@ -107,27 +107,8 @@ This violates:
 
 ---
 
-## Prism Protocol Boundary Diagram (v0.1)
+## Prism Protocol integration
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    INTERNAL REASONING LAYER                 │
-├─────────────────────────────────────────────────────────────┤
-│  ┌─────────────────┐          ┌─────────────────┐           │
-│  │   LLM / Model   │          │   DSPy Module   │           │
-│  │   (reasoning)   │  ────▶   │ (optimization) │           │
-│  └─────────────────┘          └─────────────────┘           │
-│                                    │                        │
-│                            ┌───────┘                        │
-│                            ▼                                │
-│        ┌───────────────────────────────────┐                │  
-│        │        Agent Decision Logic       │                │
-│        │  (interprets reasoning output and │                │
-│        │       decides to take action)     │                │
-│        └─────────────────┬─────────────────┘                │
-└──────────────────────────│───────────────────────────────── ┘
-                           │
-                           │ generates Prism envelope
-                           ▼
 
                          PRISM ENVELOPE
       ┌─────────────────────────────────────────────────────┐
@@ -137,5 +118,30 @@ This violates:
       │ intent_summary: "update_application_config"         │
       │ prism_version: "prism_v0.1"                         │
       └─────────────────────────────────────────────────────┘
+
+
+User Input (fuzzy / ambiguous)
+            ↓
+
+[DSPy Optimization (ILM)] ← ─────── receives Prism mismatch signal ───────┐
+– Learns from mismatch signals                                            |
+– Learns from Prism serialization failures                                |
+– Refines clarified intent candidate                                      |
+            ↓                                                             |
+                                                                          |
+[Prism Signal Generator]                                                  |
+– Converts clarified intent → Prism Intent Ping                           |
+– Sends ping upstream for ILM re-evaluation                               |
+            ↑                                                             |
+            │  ILM checks:                                                |
+            │   “Does this Prism ping match the intended meaning?”        |
+            │   “Can I produce a representation that fits the protocol?”  |
+            └─────────────── Loop until ILM is satisfied                  |  
+                    (two correction gradients per cycle up to user)       |
+                                                                          |
+Optional: User confirmation  e/execute l/loop ────────────────────────────┘
+            ↓
+
+Execution (aligned intent)
 
 ```
