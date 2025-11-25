@@ -107,7 +107,7 @@ This violates:
 
 ---
 
-## Prism Protocol integration
+## Prism Protocol integration use case example
 ```
 
                          PRISM ENVELOPE
