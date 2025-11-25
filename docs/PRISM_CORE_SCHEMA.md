@@ -41,7 +41,7 @@ This should NOT include internal reasoning traces, chain-of-thought, or model in
 
 ## Example (Minimal Signal)
 
-```json```
+```json
 {
   "prism_id": "8f766c64-2f1e-4c72-8e33-29a7bcb198a8",
   "timestamp": "2025-11-22T05:14:21Z",
@@ -49,6 +49,8 @@ This should NOT include internal reasoning traces, chain-of-thought, or model in
   "intent_summary": "send_email to bob@example.com with quarterly report",
   "prism_version": "prism_v0.1"
 }
+
+```
 
 ---
 
