@@ -142,7 +142,7 @@ Minimal field definitions
 
 Starter libraries (Node, Python)
 
-MIT License
+Apache 2.0 License
 
 v0.2 — Ecosystem
 
@@ -223,7 +223,7 @@ PRs encouraged.
 
 ## License
 
-MIT License — open, permissive, friendly to industry and academia.
+Apache 2.0 License — open, permissive, friendly to industry and academia.
 
 ## Credit
 

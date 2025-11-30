@@ -1,7 +1,7 @@
 # Prism Architecture Overview
 Version: Draft v0.2  
 Status: Conceptual Documentation  
-License: MIT 
+License: Apache 2.0 
 
 ---
 
