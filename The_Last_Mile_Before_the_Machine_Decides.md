@@ -34,7 +34,7 @@ Pre-execution is not slow. The latency cost of checking intent is measured in mi
 
 ## Why Intent Is the Only Thing That Matters
 
-Here is the uncomfortable truth about autonomous systems: we do not actually care what they do. We care what they mean to do.
+Here is the uncomfortable truth about autonomous systems: we do not actually care how they do what they do. We care what they mean to do.
 An agent that accidentally sends an email to the wrong person has made an error. An agent that intentionally exfiltrates data to an unauthorized endpoint has committed a violation. The action might look similar in the logs. The intent is completely different. And the intent is what determines whether you have a bug or a breach.
 But here is the problem. You cannot infer intent from outcome. By the time you see the result, the intent is a black box. You can guess. You can reconstruct. You can interrogate the model after the fact. But you cannot know with certainty what the agent was trying to do unless you capture that intent at the moment it is formed, before it becomes action.
 This is what pre-execution gives you. Not a guess at intent. Not a reconstruction of intent. The intent itself, stated plainly, at the moment it matters.
