@@ -29,6 +29,7 @@ The Prism Core Schema defines the minimal, universal fields that every Prism int
 **Description:** Human-readable description of the action the agent intends to take.
 
 This should NOT include internal reasoning traces, chain-of-thought, or model internals.
+It MAY include action metadata needed to describe the intended operation.
 
 ---
 
@@ -58,6 +59,8 @@ This should NOT include internal reasoning traces, chain-of-thought, or model in
 
 The Core Schema represents the eternal, stable foundation of Prism.
 Extended schemas may exist in the future, but these fields MUST remain unchanged.
+
+The canonical machine-readable schema for this version lives at `docs/schema/prism-v0.1.schema.json`.
 
 ---
 

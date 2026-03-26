@@ -36,7 +36,7 @@ They are fundamentally different layers.
 - **Reasoning ≠ intent.**  
   Internal planning is not a declaration of external action.
 
-- **Prism does not read or inspect data.**  
+- **Prism does not inspect model internals.**  
   Prism MUST NOT access:  
   - prompts  
   - documents  
@@ -44,6 +44,8 @@ They are fundamentally different layers.
   - chain-of-thought  
   - DSPy traces  
   - internal context windows  
+
+  Prism may still carry a concise action summary supplied by the agent layer.
 
 - **Prism must remain model-agnostic.**  
   If DSPy generated Prism data, Prism would leak model internals.
@@ -123,23 +125,17 @@ This violates:
 User Input (fuzzy / ambiguous)
             ↓
 
-[DSPy Optimization (ILM)] ← ─────── receives Prism mismatch signal ───────┐
-– Learns from mismatch signals                                            |
-– Learns from Prism serialization failures                                |
-– Refines clarified intent candidate                                      |
-            ↓                                                             |
-                                                                          |
-[Prism Signal Generator]                                                  |
-– Converts clarified intent → Prism Intent Ping                           |
-– Sends ping upstream for ILM re-evaluation                               |
-            ↑                                                             |
-            │  ILM checks:                                                |
-            │   “Does this Prism ping match the intended meaning?”        |
-            │   “Can I produce a representation that fits the protocol?”  |
-            └─────────────── Loop until ILM is satisfied                  |  
-                    (two correction gradients per cycle up to user)       |
-                                                                          |
-Optional: User confirmation  e/execute l/loop ────────────────────────────┘
+[DSPy Optimization (ILM)]
+– Produces structured plan
+– Refines task understanding
+            ↓
+
+[Agent Action Boundary]
+– Selects concrete action
+– Creates Prism envelope
+            ↓
+
+Optional: External policy / approval layer
             ↓
 
 Execution (aligned intent)

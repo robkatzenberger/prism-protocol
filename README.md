@@ -20,9 +20,7 @@ when the intent was formed
 
 a human-readable summary
 
-self-assessed confidence
-
-a simple acknowledgment
+a protocol version marker
 
 This makes intent explicit and portable without imposing policy, cryptography, identity proofs, or governance.
 
@@ -46,7 +44,7 @@ The core signal is a tiny, portable metadata object:
   "timestamp": "ISO-8601",
   "agent": "string",
   "intent_summary": "string",
-  "acknowledgment": "prism_v0.1"
+  "prism_version": "prism_v0.1"
 }
 ```
 
@@ -58,7 +56,7 @@ The core signal is a tiny, portable metadata object:
 | **timestamp**     | When the intent was formed (ISO 8601 UTC).                                              |
 | **agent**        | Name or identifier of the system generating the intent.                                 |
 | **intent_summary** | Human-readable description of the intended action.                                     |
-| **acknowledgment** | Prism signal version identifier (`prism_v0.1`).                                        |
+| **prism_version** | Prism protocol version identifier (`prism_v0.1`).                                      |
 
 
 The envelope is intentionally minimal for maximum safety, clarity, and interoperability.
@@ -78,7 +76,7 @@ def create_prism_signal(agent, summary):
         "timestamp": utc_now().isoformat().replace("+00:00", "Z"),
         "agent": agent,
         "intent_summary": summary,
-        "acknowledgment": "prism_v0.1"
+        "prism_version": "prism_v0.1"
     }
 ```
 
@@ -176,7 +174,7 @@ def create_prism_signal(agent, summary):
         "timestamp": utc_now().isoformat().replace("+00:00", "Z"),
         "agent": agent,
         "intent_summary": summary,
-        "acknowledgment": "prism_v0.1"
+        "prism_version": "prism_v0.1"
     }
 
 # Example usage
@@ -188,6 +186,19 @@ signal = create_prism_signal(
 print(signal)
 ```
 
+### Example (Node.js)
+
+```javascript
+import { createPrismSignal } from "./examples/node/createPrismSignal.mjs";
+
+const signal = createPrismSignal(
+  "my_app.backend.worker",
+  "Sending notification email"
+);
+
+console.log(signal);
+```
+
 ### Output Example
 
 ```json
@@ -196,9 +207,26 @@ print(signal)
   "timestamp": "2025-02-12T14:31:23.018Z",
   "agent": "my_app.backend.worker",
   "intent_summary": "Sending notification email",
-  "acknowledgment": "prism_v0.1"
+  "prism_version": "prism_v0.1"
 }
 ```
+
+## Reference Implementations
+
+Minimal reference code is included for direct adoption and testing:
+
+- `examples/python/create_prism_signal.py`
+- `examples/node/createPrismSignal.mjs`
+- `scripts/validate-examples.mjs`
+- `docs/examples/signals/`
+
+Run the validator with:
+
+```bash
+node scripts/validate-examples.mjs
+```
+
+The validator checks the canonical example signals against the v0.1 schema at `docs/schema/prism-v0.1.schema.json`.
 
 
 

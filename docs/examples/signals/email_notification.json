@@ -1,0 +1,7 @@
+{
+  "prism_id": "92dcf4e8-47e8-4c65-9ccb-a1e8b8f80a57",
+  "timestamp": "2025-02-12T14:31:23.018Z",
+  "agent": "my_app.backend.worker",
+  "intent_summary": "Sending notification email",
+  "prism_version": "prism_v0.1"
+}

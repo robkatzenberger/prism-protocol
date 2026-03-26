@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://prismprotocol.org/schema/prism-v0.1.schema.json",
+  "title": "Prism Intent Signal v0.1",
+  "description": "Canonical JSON Schema for the Prism v0.1 intent envelope.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "prism_id",
+    "timestamp",
+    "agent",
+    "intent_summary",
+    "prism_version"
+  ],
+  "properties": {
+    "prism_id": {
+      "type": "string",
+      "description": "Unique identifier for this intent signal.",
+      "format": "uuid"
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "Timestamp when the intent was formed.",
+      "format": "date-time"
+    },
+    "agent": {
+      "type": "string",
+      "description": "Name or identifier of the agent or system generating the intent.",
+      "minLength": 1
+    },
+    "intent_summary": {
+      "type": "string",
+      "description": "Human-readable description of the action the agent intends to take.",
+      "minLength": 1
+    },
+    "prism_version": {
+      "type": "string",
+      "description": "Version of the Prism protocol used to form this signal.",
+      "const": "prism_v0.1"
+    }
+  },
+  "examples": [
+    {
+      "prism_id": "8f766c64-2f1e-4c72-8e33-29a7bcb198a8",
+      "timestamp": "2025-11-22T05:14:21Z",
+      "agent": "email_assistant_01",
+      "intent_summary": "send_email to bob@example.com with quarterly report",
+      "prism_version": "prism_v0.1"
+    }
+  ]
+}

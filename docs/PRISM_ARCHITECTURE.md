@@ -17,9 +17,9 @@ Prism provides:
 
 **Prism describes intent — it does not judge, enforce, or verify it.**
 
-**Prism does not read, inspect, process, or store user data.**
+**Prism does not inspect model internals or reasoning traces.**
 
-Prism only creates metadata describing the agent’s intended action.
+Prism only creates metadata describing the agent's intended action at the action boundary.
 
 It does not:
 - parse model inputs
@@ -28,9 +28,11 @@ It does not:
 - access context windows
 - read documents
 - read user-provided text
-- collect or transform any content
+- derive intent from hidden model state or chain-of-thought
 
-Prism operates strictly at the action boundary, generating a neutral, external signal without touching the underlying data that led to the action.
+Implementations may still include action metadata such as a recipient, endpoint, or resource identifier. Prism therefore avoids internal reasoning data, but it does not guarantee that an intent envelope is free of sensitive business data.
+
+Prism operates strictly at the action boundary, generating a neutral, external signal without exposing the underlying reasoning that led to the action.
 
 ---
 
